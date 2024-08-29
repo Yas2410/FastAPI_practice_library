@@ -15,4 +15,4 @@ engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Classe de base. Tous les modèles hériteront de cete classe
-Base = declarative_base
+Base = declarative_base()

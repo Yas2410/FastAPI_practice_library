@@ -1,10 +1,10 @@
 # Import des modules FastAPI pour la création des routes
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from ..db import models, database
-from ..schemas import schemas
+from db import models, database
+from schemas import schemas
 # Pour la gestion des mots de passe
-from ..db.hash import get_password_hash
+from db.hash import get_password_hash
 from typing import List
 
 # Création d'un routeur pour regrouper les routes liées aux lecteurs (readers)
@@ -32,7 +32,7 @@ def create_reader(reader: schemas.ReaderCreate, db: Session = Depends(get_db)):
         first_name=reader.first_name,
         last_name=reader.last_name,
         email=reader.email,
-        password=hashed_password.password
+        password=hashed_password
     )  # Création d'une instance du modèle Reader
     db.add(db_reader)  # Ajout du lecteur à la session
     db.commit()  # Enregistrement des changements en BDD
